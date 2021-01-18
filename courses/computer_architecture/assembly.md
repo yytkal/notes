@@ -26,3 +26,23 @@ reads text file of asm program and produce 32-bit words to be loaded into memory
 
 # UASM
 microassembler
+
+# little-endian
+#card
+least-significant bytes stored at lowest memory address
+
+# .symbol
+#card
+the next byte address to be filled in main memory
+can read, write or leave empty space
+e.g:
+.=0x100 // set memory address to 0x100
+k=. // put memory location into k
+.=.+16 // skip 16 bytes
+
+# .aligh 4
+#card
+ensure instruction start on word boundary (address = 0 mod 4)
+
+# pseudo instructions
+provide a larger instruction set, although underneath using implemented via small instruction set.

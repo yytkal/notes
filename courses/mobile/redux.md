@@ -27,7 +27,7 @@ listeners as callback when state changes
 
 ## action
 a piece of data contains all information needed for a update
-- usually objects with a type key 
+- usually objects with a type key
 - https://github.com/redux-utilities/flux-standard-action
 
 # example:simple redux
@@ -37,9 +37,9 @@ class Store {
 	  this.reducer = reducer
 		this.state = initialState
 	}
-	
+
 	getState() {return this.state}
-	
+
 	dispatch(update) {
 	  this.state = this.reducer(this.state, update)
 	}
@@ -67,7 +67,7 @@ const reducer = (state, action) => ({
   user: userReducer(state.user, action),
 	contacts: contactReducer(state.contacts, action),
 })
-	
+
 const updateUser = update => ({type: UPDATE_USER, payload: update})
 const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact})
 const store = new Store(reducer, DEFAULT_STATE)
@@ -85,7 +85,7 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const UPDATE_CONTACT = 'UPDATE_CONTACT'
 
 export const updateUser = update => ({type: UPDATE_USER, payload: update})
-export const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact}) 
+export const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact})
 ```
 
 ```js
@@ -135,7 +135,7 @@ store.dispatch(addContact({name: 'abc', number: '12345'})
 ```
 ## react redux
 - npm install react-redux
-- provider: pass store to any nested connected components 
+- provider: pass store to any nested connected components
 ```js
 import {Provider} from 'react-redux'
 import store from './store'
@@ -144,7 +144,7 @@ render() {
   return  (
 		<Provider store={store}>
 		 	...core logic...
-		</Provider>	
+		</Provider>
 	)
 }
 ```
@@ -160,3 +160,22 @@ export default connect(mapStateToProps) (ContactListScreen)
 
 export default connect(null, {addContact: addContact})(AddContactScreen)
 ```
+
+# Async Redux
+## Middleware
+- provides extension point between dispatching an action and the moments it reach reducer.
+- any function with prototype: ((getState, dispatch)) => next => action => void
+- npm install redux-thunk
+```jsx
+import applyMiddleware from 'redux'
+const thunk = store => next => action => {
+  if (typeof action === 'function') {
+    action(store.dispatch)
+  } else {
+    next(action)
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk))
+```
+https://youtu.be/T0elp5K9lLg?t=4544

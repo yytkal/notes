@@ -31,7 +31,7 @@ reserve byte (create new variable/array)
 
 # AX
 #card
-accumulator register
+accumulator
 ^1610437447938
 
 # CX
@@ -46,27 +46,27 @@ data
 
 # BX
 #card
-base index, general purpose
+base
 ^1610437447964
 
 # SP
 #card
-stack pointer
+stack pointer, offset value within stack. SS:SP refer to current position.
 ^1610437447974
 
 # BP
 #card
-base, 基址寄存器
+base pointer, reference parameter variables in subroutine
 ^1610437447982
 
 # SI
 #card
-source index
+source index for string operations
 ^1610437447989
 
 # DI
 #card
-destination index
+destination index for string operations
 ^1610437447997
 
 # AL; AH
@@ -82,17 +82,17 @@ extra segment
 
 # CS
 #card
-code segment
+code segment, contains all instructions to be executed
 ^1610437448020
 
 # SS
 #card
-stack segment
+stack segment, contains data and return address of procedures or subroutines.
 ^1610437448028
 
 # DS
 #card
-data segment
+data segment, store starting address of data segment
 ^1610437448037
 
 # \[SI\]

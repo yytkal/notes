@@ -78,6 +78,7 @@ store.dispatch(addContact({name: 'abc', number: '12345'})
 # Redux (Actual)
 - similar to the homemade SimpleRedux
 - npm install redux
+
 ```js
 // actions.js
 
@@ -149,6 +150,7 @@ render() {
 }
 ```
 - connect, extract subset of application state and pass into screen components
+
 ```js
 import {connect} from react-redux
 import {addContact} from './actions'
@@ -166,7 +168,8 @@ export default connect(null, {addContact: addContact})(AddContactScreen)
 - provides extension point between dispatching an action and the moments it reach reducer.
 - any function with prototype: ((getState, dispatch)) => next => action => void
 - npm install redux-thunk
-```jsx
+
+```js
 import applyMiddleware from 'redux'
 const thunk = store => next => action => {
   if (typeof action === 'function') {
@@ -178,4 +181,14 @@ const thunk = store => next => action => {
 
 const store = createStore(reducer, applyMiddleware(thunk))
 ```
-https://youtu.be/T0elp5K9lLg?t=4544
+
+## Persisting State
+### redux-persist
+abstracts out storage of store into AsyncStorage
+- persistStore
+- persistReducer
+- persistGate
+
+## Container vs Presentational Components
+- Container are aware of redux state
+- Presentational are only aware of props, e.g. simple components

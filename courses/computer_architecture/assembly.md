@@ -46,3 +46,5 @@ ensure instruction start on word boundary (address = 0 mod 4)
 
 # pseudo instructions
 provide a larger instruction set, although underneath using implemented via small instruction set.
+
+bookmark: https://learning.edx.org/course/course-v1:MITx+6.004.2x_2+3T2016/block-v1:MITx+6.004.2x_2+3T2016+type@sequential+block@c4s2/block-v1:MITx+6.004.2x_2+3T2016+type@vertical+block@c4s2v1

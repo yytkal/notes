@@ -122,6 +122,19 @@ driver gets a command from OS, translate and write into device registers.
 ### access
 busy waiting::issue syscall, polling device until ready
 interrupt::controller issue interrupt to signal completion
+DMA::direct memory access, use special DMA chip, talk to mem and controller itself. After done, signal interrupt.
+
+#### interrupt
+#card
+1. CPU -> disk controller
+2. disk control -> interrupt controller chip
+3. if interrupt controller is ready, assert a pin on CPU chip.
+4. when CPU is ready, push PSW and PC to stack, switch to kernel mode and handle interrupt.
+
+##### interrupt vector
+#card
+memory section containing interrupt handler for a device
+
 
 ### controller
 #card
@@ -148,3 +161,32 @@ most runs in kernel mode, part of OS:
 1. relink kernel with new driver and reboot system, e.g. older UNIX
 2. make entry in OS file and reboot. OS search driver and load. e.g. windows
 3. install on the fly without reboot. e.g. USBs
+
+
+## buses
+
+### PCIe
+#card
+- main bus in system
+- transfer rate: tens of gigabits per sec
+- dedicated point-to-point connections
+- serial bus architecture
+- data send in a message, similar to network packet
+
+### shared bus architecture
+#card
+multiple devices use same wire to transfer data.
+
+### parallel bus architecture
+#card
+send each word of data over multiple wires, e.g. PCI bus
+
+### DMI
+#card
+direct media interface
+
+### USB
+#card
+universal serial bus
+invented for slow I/O devices
+p33

@@ -19,3 +19,15 @@ Basic architecture: parsing/optimizer/executor.
 Summary: Last decade, mostly reinvent wheel.
 
 ## Architecture of a Database System
+
+### RDBMS
+
+#### components
+#card
+client communication manager
+process manager
+relation query processor
+transaction storage manager
+shared components and utilities
+
+p9

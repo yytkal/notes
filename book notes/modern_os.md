@@ -189,4 +189,32 @@ direct media interface
 #card
 universal serial bus
 invented for slow I/O devices
-p33
+centralized bus, root device polls all I/O devices every 1msec
+USB 2.0:480Mbps; USB 3.0: 5Gbps
+
+### SCSI
+#card
+small computer system interface, high performance bus for fast disks, scanners.
+640MB/sec
+
+### Plug&Play
+#card
+dynamically assign interrupt request level and addresses for I/O card.
+
+## Boot
+
+### BIOS
+#card
+Basic Input OutputSystem, contain low-level I/O software, held in flash RAM.
+1. Check RAM, keyboard and other basic devices
+2. Scan PCIe buses.
+3. Determine boot device stored in CMOS memory.
+4. Load and run first sector from boot device, includes partition table and boot loader.
+5. Boot loader loads OS.
+6. OS configures and loads device driver.
+
+## Real-Time Operating Systems
+- hard real-time: action absolutely must occur at a certain time
+- soft real-time: missing an occasional deadline is not desirable but acceptable. e.g. multimedia system
+
+70/1137

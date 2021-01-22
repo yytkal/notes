@@ -114,7 +114,9 @@ behavior driven development/test (avoid writing untestable code)
 #card
 don't ask object for data, tell object what to do
 https://martinfowler.com/bliki/TellDontAsk.html
+^1611302987692
 
 # Separation queries from updates
 #card
 do not allow code in same methods/classes to request data and act on it.
+^1611302987701

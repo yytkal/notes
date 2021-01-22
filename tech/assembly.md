@@ -153,7 +153,9 @@ serial or parallel combination of flipflops
 # von neumann model
 #card
 cpu::datapath + control FSM
+^1611302981343
 memory::array of words
+^1611302981353
 input/output: disk, keyboard, mouse, etc
 ^1610437448130
 

@@ -171,6 +171,7 @@ busy waiting::issue syscall, polling device until ready
 interrupt::controller issue interrupt to signal completion
 ^1610919554204
 DMA::direct memory access, use special DMA chip, talk to mem and controller itself. After done, signal interrupt.
+^1611302949406
 
 #### interrupt
 #card
@@ -182,6 +183,7 @@ DMA::direct memory access, use special DMA chip, talk to mem and controller itse
 ##### interrupt vector
 #card
 memory section containing interrupt handler for a device
+^1611302949413
 
 ### controller
 #card
@@ -222,18 +224,22 @@ most runs in kernel mode, part of OS:
 - dedicated point-to-point connections
 - serial bus architecture
 - data send in a message, similar to network packet
+^1611302949424
 
 ### shared bus architecture
 #card
 multiple devices use same wire to transfer data.
+^1611302949433
 
 ### parallel bus architecture
 #card
 send each word of data over multiple wires, e.g. PCI bus
+^1611302949444
 
 ### DMI
 #card
 direct media interface
+^1611302949454
 
 ### USB
 #card
@@ -241,15 +247,18 @@ universal serial bus
 invented for slow I/O devices
 centralized bus, root device polls all I/O devices every 1msec
 USB 2.0:480Mbps; USB 3.0: 5Gbps
+^1611302949460
 
 ### SCSI
 #card
 small computer system interface, high performance bus for fast disks, scanners.
 640MB/sec
+^1611302949467
 
 ### Plug&Play
 #card
 dynamically assign interrupt request level and addresses for I/O card.
+^1611302949474
 
 ## Boot
 
@@ -262,6 +271,7 @@ Basic Input OutputSystem, contain low-level I/O software, held in flash RAM.
 4. Load and run first sector from boot device, includes partition table and boot loader.
 5. Boot loader loads OS.
 6. OS configures and loads device driver.
+^1611302949482
 
 ## Real-Time Operating Systems
 - hard real-time: action absolutely must occur at a certain time

@@ -8,17 +8,37 @@ cards-deck: tech::modern_os
 
 ### general registers
 #card
-- program counter::containing memory address of next instruction to be fetched
-^1610912464810
-- stack register::point to top of current stack in memory
-^1610912464819
-- stack::contains one frame per procedure that has been entered but not exited
-^1610912464825
-- frame::contains input parameters, local variables and temporary variables not in register
-^1610912464832
-- PSW::Program Status Word, contains condition code bits, set by comparison instructions, CPU priority, (kernel/user) mode, etc. Important in syscall and IO.
-^1610912464839
+program counter
+stack register
+stack
+frame
+PSW
 ^1610912464846
+
+#### program counter
+#card
+containing memory address of next instruction to be fetched
+^1610912464810
+
+#### stack register
+#card
+point to top of current stack in memory
+^1610912464819
+
+#### stack
+#card
+contains one frame per procedure that has been entered but not exited
+^1610912464825
+
+#### frame
+#card
+contains input parameters, local variables and temporary variables not in register
+^1610912464832
+
+#### PSW
+#card
+Program Status Word, contains condition code bits, set by comparison instructions, CPU priority, (kernel/user) mode, etc. Important in syscall and IO.
+^1610912464839
 
 ### superscalar CPU
 #card
@@ -109,13 +129,22 @@ powered by small battery
 move 1 cylinder take 1ms
 move to random cylinder takes 5-10ms
 sequential read 50-160 MB/sec
-- track::circle
-^1610919554143
-- cylinder::all tracks for a given arm position
-^1610919554150
-- sector::each track divided into sectors, 512 bytes per sector
-^1610919554157
 ^1610919554163
+
+#### track
+#card
+circle
+^1610919554143
+
+#### cylinder
+#card
+all tracks for a given arm position
+^1610919554150
+
+#### sector
+#card
+each track divided into sectors, 512 bytes per sector
+^1610919554157
 
 ### SSD
 #card
@@ -141,6 +170,18 @@ busy waiting::issue syscall, polling device until ready
 ^1610919554195
 interrupt::controller issue interrupt to signal completion
 ^1610919554204
+DMA::direct memory access, use special DMA chip, talk to mem and controller itself. After done, signal interrupt.
+
+#### interrupt
+#card
+1. CPU -> disk controller
+2. disk control -> interrupt controller chip
+3. if interrupt controller is ready, assert a pin on CPU chip.
+4. when CPU is ready, push PSW and PC to stack, switch to kernel mode and handle interrupt.
+
+##### interrupt vector
+#card
+memory section containing interrupt handler for a device
 
 ### controller
 #card
@@ -171,3 +212,59 @@ most runs in kernel mode, part of OS:
 2. make entry in OS file and reboot. OS search driver and load. e.g. windows
 3. install on the fly without reboot. e.g. USBs
 ^1610919554229
+
+## buses
+
+### PCIe
+#card
+- main bus in system
+- transfer rate: tens of gigabits per sec
+- dedicated point-to-point connections
+- serial bus architecture
+- data send in a message, similar to network packet
+
+### shared bus architecture
+#card
+multiple devices use same wire to transfer data.
+
+### parallel bus architecture
+#card
+send each word of data over multiple wires, e.g. PCI bus
+
+### DMI
+#card
+direct media interface
+
+### USB
+#card
+universal serial bus
+invented for slow I/O devices
+centralized bus, root device polls all I/O devices every 1msec
+USB 2.0:480Mbps; USB 3.0: 5Gbps
+
+### SCSI
+#card
+small computer system interface, high performance bus for fast disks, scanners.
+640MB/sec
+
+### Plug&Play
+#card
+dynamically assign interrupt request level and addresses for I/O card.
+
+## Boot
+
+### BIOS
+#card
+Basic Input OutputSystem, contain low-level I/O software, held in flash RAM.
+1. Check RAM, keyboard and other basic devices
+2. Scan PCIe buses.
+3. Determine boot device stored in CMOS memory.
+4. Load and run first sector from boot device, includes partition table and boot loader.
+5. Boot loader loads OS.
+6. OS configures and loads device driver.
+
+## Real-Time Operating Systems
+- hard real-time: action absolutely must occur at a certain time
+- soft real-time: missing an occasional deadline is not desirable but acceptable. e.g. multimedia system
+
+70/1137

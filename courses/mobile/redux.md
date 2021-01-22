@@ -27,7 +27,7 @@ listeners as callback when state changes
 
 ## action
 a piece of data contains all information needed for a update
-- usually objects with a type key 
+- usually objects with a type key
 - https://github.com/redux-utilities/flux-standard-action
 
 # example:simple redux
@@ -37,9 +37,9 @@ class Store {
 	  this.reducer = reducer
 		this.state = initialState
 	}
-	
+
 	getState() {return this.state}
-	
+
 	dispatch(update) {
 	  this.state = this.reducer(this.state, update)
 	}
@@ -67,7 +67,7 @@ const reducer = (state, action) => ({
   user: userReducer(state.user, action),
 	contacts: contactReducer(state.contacts, action),
 })
-	
+
 const updateUser = update => ({type: UPDATE_USER, payload: update})
 const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact})
 const store = new Store(reducer, DEFAULT_STATE)
@@ -78,6 +78,7 @@ store.dispatch(addContact({name: 'abc', number: '12345'})
 # Redux (Actual)
 - similar to the homemade SimpleRedux
 - npm install redux
+
 ```js
 // actions.js
 
@@ -85,7 +86,7 @@ export const UPDATE_USER = 'UPDATE_USER'
 export const UPDATE_CONTACT = 'UPDATE_CONTACT'
 
 export const updateUser = update => ({type: UPDATE_USER, payload: update})
-export const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact}) 
+export const addContact = newContact => ({type: UPDATE_CONTACT, payload: newContact})
 ```
 
 ```js
@@ -135,7 +136,7 @@ store.dispatch(addContact({name: 'abc', number: '12345'})
 ```
 ## react redux
 - npm install react-redux
-- provider: pass store to any nested connected components 
+- provider: pass store to any nested connected components
 ```js
 import {Provider} from 'react-redux'
 import store from './store'
@@ -144,11 +145,12 @@ render() {
   return  (
 		<Provider store={store}>
 		 	...core logic...
-		</Provider>	
+		</Provider>
 	)
 }
 ```
 - connect, extract subset of application state and pass into screen components
+
 ```js
 import {connect} from react-redux
 import {addContact} from './actions'
@@ -160,3 +162,33 @@ export default connect(mapStateToProps) (ContactListScreen)
 
 export default connect(null, {addContact: addContact})(AddContactScreen)
 ```
+
+# Async Redux
+## Middleware
+- provides extension point between dispatching an action and the moments it reach reducer.
+- any function with prototype: ((getState, dispatch)) => next => action => void
+- npm install redux-thunk
+
+```js
+import applyMiddleware from 'redux'
+const thunk = store => next => action => {
+  if (typeof action === 'function') {
+    action(store.dispatch)
+  } else {
+    next(action)
+  }
+}
+
+const store = createStore(reducer, applyMiddleware(thunk))
+```
+
+## Persisting State
+### redux-persist
+abstracts out storage of store into AsyncStorage
+- persistStore
+- persistReducer
+- persistGate
+
+## Container vs Presentational Components
+- Container are aware of redux state
+- Presentational are only aware of props, e.g. simple components

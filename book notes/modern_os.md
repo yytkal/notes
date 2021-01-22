@@ -8,17 +8,37 @@ cards-deck: tech::modern_os
 
 ### general registers
 #card
-- program counter::containing memory address of next instruction to be fetched
-^1610912464810
-- stack register::point to top of current stack in memory
-^1610912464819
-- stack::contains one frame per procedure that has been entered but not exited
-^1610912464825
-- frame::contains input parameters, local variables and temporary variables not in register
-^1610912464832
-- PSW::Program Status Word, contains condition code bits, set by comparison instructions, CPU priority, (kernel/user) mode, etc. Important in syscall and IO.
-^1610912464839
+program counter
+stack register
+stack
+frame
+PSW
 ^1610912464846
+
+#### program counter
+#card
+containing memory address of next instruction to be fetched
+^1610912464810
+
+#### stack register
+#card
+point to top of current stack in memory
+^1610912464819
+
+#### stack
+#card
+contains one frame per procedure that has been entered but not exited
+^1610912464825
+
+#### frame
+#card
+contains input parameters, local variables and temporary variables not in register
+^1610912464832
+
+#### PSW
+#card
+Program Status Word, contains condition code bits, set by comparison instructions, CPU priority, (kernel/user) mode, etc. Important in syscall and IO.
+^1610912464839
 
 ### superscalar CPU
 #card
@@ -99,9 +119,18 @@ powered by small battery
 move 1 cylinder take 1ms
 move to random cylinder takes 5-10ms
 sequential read 50-160 MB/sec
-- track::circle
-- cylinder::all tracks for a given arm position
-- sector::each track divided into sectors, 512 bytes per sector
+
+#### track
+#card
+circle
+
+#### cylinder
+#card
+all tracks for a given arm position
+
+#### sector
+#card
+each track divided into sectors, 512 bytes per sector
 
 ### SSD
 #card

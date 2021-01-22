@@ -20,20 +20,17 @@ The average time for a particular task is constrained as well as the number of i
 warehouse-scale computers, clusters: WSC use redundant inexpensive component as building blocks, relying on a software layer to catch and isolate many failures that will happen with computing at this scale.
 
 # Application Parallelism
-#card
 DLP::Data-level, Data items can be operated at the same time.
 TLP::Task-level, Task of work can operate independently and largely in parallel.
 
 # Hardware Parallelism
-#card
 Instruction-level Parallelism::Exploits DLP with compiler help using ideas of pipelining and at medium level using speculative execution[^1].
 Vector Architecture and Graphics Processing Unit::Exploits DLP by applying single instruction to a collection of data in parallel.
 Thread-level Parallelism::Exploits either DLP or TLP in tightly coupled hardware model that allows for interaction among parallel threads.
 Request-level Parallelism::Exploits parallelism among largely decoupled tasks specified by programmers or operating systems.
 
 # Hardware Implementations
-#card
-SISD, single instruction stream, single data stream::Uniprocessor, standard sequential computer, but can still use instruction-level parallelism.
+SISD::single instruction stream, single data stream, Uniprocessor, standard sequential computer, but can still use instruction-level parallelism.
 SIMD::Same instruction executed by multiple processors using different data stream. DLP
 MISD::No commercial multi processor has been built
 MIMD::TLM. More flexible than SIMD, more generally applicable, but more expansive. MIMD can also exploit DLP, but overhead is generally higher than SIMD.
@@ -43,7 +40,6 @@ MIMD::TLM. More flexible than SIMD, more generally applicable, but more expansiv
 programmer visible instruction set. Boundary between software and hardware.
 
 ## Class
-#card
 Nearly all ISAs today are general-purpose register architecture, where operands are either registers or memory locations. All recent ISAs are load-store ISA.
 register-memory::80x86
 load-store::ARM, MIPS, can only access memory with load, store
@@ -70,8 +66,8 @@ Addressing modes specify the address of a memory object, e.g. register, immediat
 ### Operations
 #card
 Categories: data transfer; arithmetic logical, control, floating point.
-flow instructions::conditional branches, unconditional jumps, procedure calls and returns. PC-relative addressing.
-ISA encoding::Fixed length, variable length. All ARM, MIPS are 32 bits long. 80x86 is variable length. Program compiled for 80x86 is usually smaller than compiled for MIPS.
+flow instructions: conditional branches, unconditional jumps, procedure calls and returns. PC-relative addressing.
+ISA encoding: Fixed length, variable length. All ARM, MIPS are 32 bits long. 80x86 is variable length. Program compiled for 80x86 is usually smaller than compiled for MIPS.
 
 # Microarchitecture, organization
 high-level aspects of computer design, e.g. memory system, memory interconnect and design of internal processor. (different implementation of same ISA)
@@ -197,24 +193,17 @@ The guiding principle of reporting performance measurements should be **reproduc
 **summarize the performance** results of the suite
 *   Average: compare the arithmetic means of the execution times of the programs in the suite.
 *   Weighted Average: add a weighting factor to each benchmark and use the weighted arithmetic mean as the single number to summarize performance.
-*   **SPECratio**: normalize execution times to a reference computer by dividing the time on the reference computer by the time on the computer being rated, yielding a ratio proportional to performance. Because a SPECRatio is a ratio rather than an absolute execution time, the mean must be computed using the geometric mean.
+*   SPECratio: normalize execution times to a reference computer by dividing the time on the reference computer by the time on the computer being rated, yielding a ratio proportional to performance. Because a SPECRatio is a ratio rather than an absolute execution time, the mean must be computed using the geometric mean.
 *   GeoMean: the motivations to use the geometric mean are substantial, especially when we use performance ratios to make comparisons.  
 
 # Principles of Computer Design
-#card
 Take Advantage of Parallelism::is one of the most important methods for improving performance.
 Principle of Locality::Programs tend to reuse data and instructions they have used recently. A widely held rule of thumb is that a program spends 90% of its execution time in only 10% of the code.
 Temporal locality::states that recently accessed items are likely to be accessed in the near future.
 Spatial locality::says that items whose addresses are near one another tend to be referenced close together in time.
 Focus on the Common Case::In making a design trade-off, favor the frequent case over the infrequent case.  the frequent case is often simpler and can be done faster than the infrequent case.
 
-# Amdahl’s Law
-#card
-speedup=execution time without optimization/execution time with optimization
-Amdahl’s law expresses the law of diminishing returns: The incremental improvement in speedup gained by an improvement of just a portion of the computation diminishes as improvements are added.
-
 # The Processor Performance Equation
-#card
 Essentially all computers are constructed using a clock running at a constant rate.
 Processor performance is dependent upon three characteristics: clock cycle (or rate), clock cycles per instruction, and instruction count
 Ticks, cycles::these discrete time events. Computer designers refer to the time of a clock period by its duration (e.g., 1 ns) or by its rate (e.g., 1 GHz).

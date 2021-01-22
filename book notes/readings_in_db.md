@@ -30,4 +30,11 @@ relation query processor
 transaction storage manager
 shared components and utilities
 
-p9
+### Process Model
+Lightweight Thread Package::an application-level construct that supports multiple threads within single OS process
+DBMS client::software component that implements API to communicate with DBMS. API example: JDBC, ODBC..
+DBMS Worker::the thread of execution in DBMS that work on behalf of DBMS client with 1:1 mapping between client and worker.
+
+#### Process per DBMS Worker
+
+13/119

@@ -85,7 +85,7 @@ SCSI command timeout::30s
 ^1611302967951
 Hardware virtualization system reboot::40s
 ^1611302967959
-Physical system reboot::5s
+Physical system reboot::5min
 ^1611302967967
 
 # Trade-offs

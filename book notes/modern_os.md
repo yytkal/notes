@@ -277,4 +277,106 @@ Basic Input OutputSystem, contain low-level I/O software, held in flash RAM.
 - hard real-time: action absolutely must occur at a certain time
 - soft real-time: missing an occasional deadline is not desirable but acceptable. e.g. multimedia system
 
-70/1137
+## Terms
+
+### Processes
+A program in execution
+
+#### address space
+#card
+list of memory locations from 0 to maximum
+contains: program, data, stack
+
+#### process table
+#card
+struct containing all information about process, other than its own address space. e.g. open files, registers, alarms and related processes.
+
+#### core image
+#card
+a suspended process consists of its address space.
+
+#### alarm signal
+#card
+software analog of hardware interrupts. Cause process to temporarily suspend and run signal-handling procedure.
+
+#### working directory
+#card
+each process has a current working directory.
+
+### File
+
+#### special file
+#card
+make I/O devices look like files, under /dev/ dir
+
+##### block special files
+#card
+model devices consisting a collection of randomly addressable blocks. e.g. disks
+
+##### character special files
+#card
+model devices accept or output character stream. e.g. printer, modems
+
+#### pipe
+#card
+pseudofile used to connect two processes
+process cannot tell difference between a pipe and a normal file without special syscall.
+
+### Syscalls
+#card
+push parameter onto stack (reverse order)
+call library procedure
+put syscall code in register
+call TRAP (switch from user to kernel)
+kernel dispatch to syscall handler based on code
+
+#### execve
+#card
+replace process core image with command to execute
+
+#### memory segment
+#card
+text segment: program code, low address
+data segment: variables, grow upward, above text segment (heap?)
+stack segment: grow downward, from high address to low
+
+#### link
+#card
+create a new directory entry with i-number of an existing file.
+If either one removed with unlink, the file still exists.
+
+#### i-node
+#card
+Each unix file has a unique i-number. Directory is simply a file containing (i-node, filename) pairs
+
+### OS Structure
+
+#### Monolithic
+#card
+Entire OS runs as a single binary in kernel mode.
+OS is a collection of procedures and free to call each other.
+Efficient, but lower reliability.
+- main program
+- service procedures (handle syscall)
+- utility procedures (helper function)
+
+#### Layered System
+#card
+e.g. MULTICS. multiple rings, inner ring is more privileged. Enforced with hardware support.
+
+#### Microkernels
+#card
+Split OS into small, well-defined modules, minimize kernel component.
+Offers high reliability.
+Put mechanism in kernel but not policy, e.g. kernel runs high priority processes, but priority scheduling run in user mode.  
+
+#### Exokernels
+#card
+partition resources directly, jail?
+
+### Compiler
+#card
+c preprocessor: reads .c imports .h and translate macro, create object file
+linker: combine object file, library function into binary
+
+116

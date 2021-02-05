@@ -116,4 +116,34 @@ large buffer improve throughput
 boundary between linear scaling and resource contention
 ^1611302968006
 
-25/650
+# saturation point
+#card
+resource hit 100% utilization
+
+# linear scalability of response time
+#card
+application can return error when resource are unavailable instead of queueing work to remain consistent response time for serviced requests
+
+# observer effect
+#card
+performance metrics are not free, cost CPU cycles to gather and store
+
+# utilization
+#card
+describes device usage
+
+## time-based
+#card
+U=B/T: The amount of time server or resource is busy.
+Some components can service operations in parallel and performance not degrade much at 100% util. e.g. storage arrays, raid?
+
+## capacity-based
+#card
+Capacity planning. A system is abble to deliver a certain amount of throughput. At any level of performance, system is performing at proportion of the capacity. The proportion is called utilization.
+100% busy != 100% capacity
+
+# saturation
+#card
+The degree which more work is requested than a resource can process. Happens at 100% utilization (capacity based). Any degree of saturation is bad due to queueing.
+
+30/650

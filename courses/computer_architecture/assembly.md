@@ -50,4 +50,9 @@ k=. // put memory location into k
 ensure instruction start on word boundary (address = 0 mod 4)
 
 # pseudo instructions
+#card
 provide a larger instruction set, although underneath using implemented via small instruction set.
+
+compiler
+analysis(front)::generate intermediate representation: lexical analysis -> syntax analysis -> semantics analysis -> generate IR
+synthesis(backend)::optimize and translate to code for target ISA: optimize IR -> Generate ASM

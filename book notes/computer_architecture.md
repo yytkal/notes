@@ -6,11 +6,9 @@ Chapter 1 Page 100
 
 
 # Responsiveness and predictability
-#card
 key characteristics for media applications.
 real-time performance requirement::a segment of the application has an absolute maximum execution time.
 ^1610929267623
-^1610929267634
 
 # Soft real time
 #card
@@ -27,18 +25,12 @@ DLP::Data-level, Data items can be operated at the same time.
 ^1610929267658
 TLP::Task-level, Task of work can operate independently and largely in parallel.
 ^1610929267664
-^1610929267671
 
 # Hardware Parallelism
-Instruction-level Parallelism::Exploits DLP with compiler help using ideas of pipelining and at medium level using speculative execution[^1].
-^1610929267678
-Vector Architecture and Graphics Processing Unit::Exploits DLP by applying single instruction to a collection of data in parallel.
-^1610929267687
-Thread-level Parallelism::Exploits either DLP or TLP in tightly coupled hardware model that allows for interaction among parallel threads.
-^1610929267694
-Request-level Parallelism::Exploits parallelism among largely decoupled tasks specified by programmers or operating systems.
-^1610929267701
-^1610929267708
+Instruction-level Parallelism:Exploits DLP with compiler help using ideas of pipelining and at medium level using speculative execution[^1].
+Vector Architecture and Graphics Processing Unit:Exploits DLP by applying single instruction to a collection of data in parallel.
+Thread-level Parallelism:Exploits either DLP or TLP in tightly coupled hardware model that allows for interaction among parallel threads.
+Request-level Parallelism:Exploits parallelism among largely decoupled tasks specified by programmers or operating systems.
 
 # Hardware Implementations
 
@@ -122,8 +114,7 @@ Density of transistors increases quadratically with a linear decrease in feature
 
 Although transistors improve in performance with decreased feature size, wires do not, becoming a major design limitation for large integrated circuits.
 
-Trends in power and energy::Power is the biggest challenge facing computer design. Power must be distributed around the chip. power is dissipated as heat and must be removed.
-^1610929267897
+Trends in power and energy:Power is the biggest challenge facing computer design. Power must be distributed around the chip. power is dissipated as heat and must be removed.
 
 # Energy and Power within Microprocessor
 Energy ~ Capacitive Load * Voltage^2
@@ -135,13 +126,11 @@ Distributing the power, removing the heat and preventing hot spots have become i
 Power is now the major constraint.
 
 # Techniques to improve energy efficiency
-#card
 1. Do nothing well. Microprocessors today turn off clock of inactive modules to save energy.
 2. Dynamic Voltage-Frequency Scaling DVFS. Modern microprocessors typically offer a few clock frequencies and voltages in which to operate that use lower power.
 3. Design for typical case.Relying on “emergency slowdown” to avoid overheating.
 4. Overclocking. Intel started offering Turbo mode, where chip decided that it is safe to run at a higher clock rate for a short time possibly on a few cores until temperature starts to rise.
 5. Race-to-half. Use a faster, less energy efficient processor to allow the rest of the system to go into sleep mode.
-^1610929267906
 
 # Module Reliability
 #card
@@ -175,20 +164,12 @@ the time the processor is computing, not including the time waiting for I/O or r
 # Benchmark
 The best choice of benchmarks to measure performance is real applications
 # common pitfalls
-#card
-Kernels::which are small, key pieces of real applications
-^1610929267986
-Toy programs::which are 100-line programs from beginning programming assignments, such as quicksort
-^1610929267994
-Synthetic benchmarks::which are fake programs invented to try to match the profile and behavior of real applications, such as Dhrystone
-^1610929268005
-(Compiler) Flags::One way to improve the performance of a benchmark has been with benchmark specific flags; these flags often caused transformations that would be illegal on many programs or would slow down performance on others
-^1610929268012
-Source code modification::In addition to the question of compiler flags, another question is whether source code modifications are allowed.
-^1610929268023
-benchmark suites::collections of benchmark applications are a popular measure of performance of processors with a variety of applications
-^1610929268031
-^1610929268040
+Kernels:which are small, key pieces of real applications
+Toy programs:which are 100-line programs from beginning programming assignments, such as quicksort
+Synthetic benchmarks:which are fake programs invented to try to match the profile and behavior of real applications, such as Dhrystone
+(Compiler) Flags:One way to improve the performance of a benchmark has been with benchmark specific flags; these flags often caused transformations that would be illegal on many programs or would slow down performance on others
+Source code modification:In addition to the question of compiler flags, another question is whether source code modifications are allowed.
+benchmark suites:collections of benchmark applications are a popular measure of performance of processors with a variety of applications
 
 # SPEC
 #card

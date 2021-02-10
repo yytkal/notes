@@ -51,7 +51,7 @@ base
 
 # SP
 #card
-stack pointer, offset value within stack. SS:SP refer to current position.
+stack pointer. Points to first unused location. SS:SP refer to current position.
 ^1610437447974
 
 # BP

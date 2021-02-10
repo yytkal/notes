@@ -53,6 +53,19 @@ ensure instruction start on word boundary (address = 0 mod 4)
 #card
 provide a larger instruction set, although underneath using implemented via small instruction set.
 
-compiler
+# compiler
 analysis(front)::generate intermediate representation: lexical analysis -> syntax analysis -> semantics analysis -> generate IR
 synthesis(backend)::optimize and translate to code for target ISA: optimize IR -> Generate ASM
+
+# linkage pointer
+#card
+call the register holding the return address
+
+# activation record
+#card
+block of storage for each active procedure call
+
+
+# stack discipline
+#card
+use stack at any time, but leave it as you found it

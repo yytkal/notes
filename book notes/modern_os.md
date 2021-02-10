@@ -379,4 +379,9 @@ partition resources directly, jail?
 c preprocessor: reads .c imports .h and translate macro, create object file
 linker: combine object file, library function into binary
 
-116
+# Processes
+
+thread creation is 10-100x faster than process creation
+
+Notes:116
+Head:134

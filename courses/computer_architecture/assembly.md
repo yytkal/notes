@@ -61,7 +61,7 @@ synthesis(backend)::optimize and translate to code for target ISA: optimize IR -
 #card
 call the register holding the return address
 
-# activation record
+# activation record/stack frame
 #card
 block of storage for each active procedure call
 
@@ -69,3 +69,8 @@ block of storage for each active procedure call
 # stack discipline
 #card
 use stack at any time, but leave it as you found it
+
+# stack
+## convention
+reverse order::arguments are pushed to stack in reverse order. First argument is last to be pushed to stack.
+callee saves::callee guarantees that all register values will be preserved across the procedure call.

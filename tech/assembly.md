@@ -56,7 +56,7 @@ stack pointer. Points to first unused location. SS:SP refer to current position.
 
 # BP
 #card
-base pointer, reference parameter variables in subroutine
+base pointer, reference parameter variables in subroutine. e.g. Input parameter can be accessed via Reg[BP]-4/-8/..., local variables is Reg[BP] +0/+4/..
 ^1610437447982
 
 # SI

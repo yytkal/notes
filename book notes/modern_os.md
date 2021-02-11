@@ -381,7 +381,21 @@ linker: combine object file, library function into binary
 
 # Processes
 
-thread creation is 10-100x faster than process creation
+- thread creation is 10-100x faster than process creation
+
+per-process resource::threads in same process share resources. e.g. address space, global variables, open files, child processes, signal handling
+per-thread resource::each thread has its own stack, register, program counter, state
+
+thread_yield::allows thread to voluntarily give up the CPU to let another thread run. Important as there is no clock interrupt to enforce multiprogramming as there is with processes.
+
+pthread::POSIX Threads
 
 Notes:116
-Head:134
+Head:140
+
+
+# Questions
+1. threads share address space but has its own stack. How does it actually look? Do you allocate the stack when you create new threads, otherwise how to prevent from overlapping?
+
+2. how does kernel enforce multiprogramming?
+By using clock interrupts?

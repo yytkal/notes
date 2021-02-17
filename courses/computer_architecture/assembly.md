@@ -74,3 +74,10 @@ use stack at any time, but leave it as you found it
 ## convention
 reverse order::arguments are pushed to stack in reverse order. First argument is last to be pushed to stack.
 callee saves::callee guarantees that all register values will be preserved across the procedure call.
+
+# CPU design tradeoffs
+* max performance
+MIPS::million instructions per second
+"iron law" of performance::time/program = instructions/program * cycles/instructions * time/cycle; perf = 1/time
+* min cost
+* best price perf

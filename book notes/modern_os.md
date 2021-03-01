@@ -380,6 +380,18 @@ c preprocessor: reads .c imports .h and translate macro, create object file
 linker: combine object file, library function into binary
 
 # Processes
+Process::an instance of executing program including the current values of program counter, registers and variables
+
+daemons::background processes
+
+fork::syscall, creates an exact clone of calling process
+
+execve::syscall, allow child process to change memory image and start new program
+
+copy-on-write::parent and child process have distinct address space and do not share writable memory
+
+process group::In Unix, a process and all its children and further descendants together form a process group.
+
 
 - thread creation is 10-100x faster than process creation
 
@@ -390,8 +402,10 @@ thread_yield::allows thread to voluntarily give up the CPU to let another thread
 
 pthread::POSIX Threads
 
-Notes:116
-Head:140
+
+
+
+Notes:123 Process States
 
 
 # Questions

@@ -81,3 +81,7 @@ MIPS::million instructions per second
 "iron law" of performance::time/program = instructions/program * cycles/instructions * time/cycle; perf = 1/time
 * min cost
 * best price perf
+
+# register file
+#card
+array of processor registers in CPU

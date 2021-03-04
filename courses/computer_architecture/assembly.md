@@ -85,3 +85,14 @@ MIPS::million instructions per second
 # register file
 #card
 array of processor registers in CPU
+
+# control signal
+## register file
+WA::write address
+WE::write enable
+WD::write data
+## ALU
+ALUFN::ALU function
+## Memory
+MWR/MWE::memory write enable, write WD into selected memory location by end of the cycle
+MOE::memory output enable

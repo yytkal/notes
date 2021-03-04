@@ -403,9 +403,12 @@ thread_yield::allows thread to voluntarily give up the CPU to let another thread
 pthread::POSIX Threads
 
 
+## state
+blocked: input ready=>ready
+ready: scheduler picks the process => running
+running: process wait for resource => blocked; scheduler picked another process => ready
 
-
-Notes:123 Process States
+Notes:94 Process States
 
 
 # Questions

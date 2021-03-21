@@ -392,8 +392,25 @@ copy-on-write::parent and child process have distinct address space and do not s
 
 process group::In Unix, a process and all its children and further descendants together form a process group.
 
+## state
+blocked: input ready=>ready
+ready: scheduler picks the process => running
+running: process wait for resource => blocked; scheduler picked another process => ready
 
-- thread creation is 10-100x faster than process creation
+## process table
+#card
+one entry per process, contains process state, program counter, stack pointer, memory localtion, open files, accounting and scheduling.
+
+## interrupt vector
+Location of interrupt service procedure associated with each I/O class.
+Interrupt controller chip pushes current process's information onto stack, then jump to location of interrupt service procedure. When finshed, scheduler is called to see who to run next
+
+## degree of multiprogramming
+#card
+CPU utilization = 1 - p^n (p: fraction of time waiting for IO, n: number of processes)
+
+## threads
+ thread creation is 10-100x faster than process creation
 
 per-process resource::threads in same process share resources. e.g. address space, global variables, open files, child processes, signal handling
 per-thread resource::each thread has its own stack, register, program counter, state
@@ -402,17 +419,104 @@ thread_yield::allows thread to voluntarily give up the CPU to let another thread
 
 pthread::POSIX Threads
 
+### implementation
+#### user-space
+* Thread implemented in user space as a library. 
+* Kernel manages single threaded processes. 
+* Each process need its own private thread table. 
++ Efficiency: Thread scheduler also in user space, no trap; no context switch; no memory flush.
++ Each process has its own customized scheduling algorithm.
+- Page faults cause entire process being blocked.
+- Fairness: Kernel is unaware of threads (no clock interrupts within process). Unless threads yield, thread scheduler cannot do anything.
+- Blocking system calls blocks all threads in the process. Alternatives:
+   * reimplement syscalls as unblockign
+   * wrapper/jacket: wrapping syscalls so that blocking syscalls are made only when safe
 
-## state
-blocked: input ready=>ready
-ready: scheduler picks the process => running
-running: process wait for resource => blocked; scheduler picked another process => ready
+#### kernel
+* kernel owns thread table
+* More overhead compared to user space implementation, alternative:
+   * recycling with thread pool, when thread is destroyed, marked as not runnable, but kernal data structure is unaffected. Reactivated when new thread created. 
 
-Notes:94 Process States
+#### hybrid
+* Flexibility: Use kernel-level threads and multiplex user-level threads onto some of them.
+
+#### upcall
+* roughly analogous to a signal in UNIX, allowing kernel activate run-time system.
+- violates structure inherent in layered system. (lower level system should not call procedures in upper level)
+
+#### popup thread
+* used in distributed systems, when new message arrival, system creates new thread
++ no registers, stacks to be restored (brand-new threads)
+
+## interprocess communication: IPC
+Communications between processes
+1. Shared data structures, e.g. semaphores can be stored in kernel and accessed with syscall
+2.  Modern OS (Unix, Windows) offer a way for processes to share some portion of address space with other process
+
+### mutual exclusion
+#### disabling interrupt
+* process disables interrupt (including clock interrupts) after entering critical region and reenable afterwards
++ useful technic in kernel, but not user processes
+- bad to grant user process power to turn off interrupts
+- not working on multiprocessor, since interrupts is turned off on only one cpu
+
+#### Lock memory bus (hardware support)
+busy wait::loop and test a variable until some value appears, should avoid unless expect wait time is short
+spin lock::a busy wait lock
+
+TSL::Test and set lock
+XCHG::Exchange contents of two locations atomically, e.g. register and memory word
+
+priority inversion problem::high priority process busy waiting on low priority process, while low priority process not able to run.
+
+#### Sleep and Wakeup
+sleep::syscall, causes caller to block
+wakeup::syscall, the process to be awakened
+
+##### semaphores
+#card
+* Value 0 means no wakeups were saved, or some positive value if one or more wakeups were pending
+* Instead of sleep/wakeup, down and up.
+* Check value, changing it and possibly goto sleep done as actomic action
+
+binary semaphores::semaphores that are initialized to 1 and used by two or more processes to ensure only one of them enter its critical region. (a basic lock?)
+mutex semaphore::used for mutual exclusion (same as binary semaphore?)
+synchronizzation::guarantee that certain event sequences do or do not occur.
+
+###### mutex
+#card 
+* a simplified semaphore for managing mutual exclusion to some shared resource
+* a shared variable that can be either locaked or unlocked. 0 is unlocked, other value is locked
+* attempt to acquire a locked mutex put the thread to blocked state
+* Simple to implement in user space with TSL or XCHG
++ no busy waiting
++ fast as completely implemented in user space
+
+###### Futexes: fast user space mutex
+#card
+* Implemented in linux
+* Basica locking, but avoids dropping in kernel unless really has to
+* Has two parts, kernel service and user lib:
+	* Kernel service provides wait queue allowing processes to wait on lock, requires expicit unblock from kernel
+	* Need syscall to put on wait queue
+	* When no contention, futex works completely in user space by using a user space lock variable
+
+###### condition variables
+#card
+* allow threads to block due to some condition not being met, pthread_cond_wait/signal
+* always used with mutex. e.g. one thread lock mutex and wait on conditional variable
+
+
+Notes: 137 - 173
 
 
 # Questions
 1. threads share address space but has its own stack. How does it actually look? Do you allocate the stack when you create new threads, otherwise how to prevent from overlapping?
 
-2. how does kernel enforce multiprogramming?
+2. [Answered?] how does kernel enforce multiprogramming?
 By using clock interrupts?
+
+3. How does interrupt vector actually work?
+In p95, the information pushed onto the stack by the interrupt is removed and stack pointer is set to point to a temporary stack used by the process handler. Why clean the stack?3. How does interrupt vector actually work?
+In p95, the information pushed onto the stack by the interrupt is removed and stack pointer is set to point to a temporary stack used by the process handler. Why clean the stack?3. How does interrupt vector actually work?
+In p95, the information pushed onto the stack by the interrupt is removed and stack pointer is set to point to a temporary stack used by the process handler. Why clean the stack?

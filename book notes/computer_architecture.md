@@ -8,23 +8,18 @@ Chapter 1 Page 100
 # Responsiveness and predictability
 key characteristics for media applications.
 real-time performance requirement::a segment of the application has an absolute maximum execution time.
-^1610929267623
 
 # Soft real time
 #card
 The average time for a particular task is constrained as well as the number of instances when some maximum time is exceeded. It is possible to occasionally miss the time constraint on an event, as long as not too many are missed.
-^1610929267642
 
 # WSC
 #card
 warehouse-scale computers, clusters: WSC use redundant inexpensive component as building blocks, relying on a software layer to catch and isolate many failures that will happen with computing at this scale.
-^1610929267652
 
 # Application Parallelism
 DLP::Data-level, Data items can be operated at the same time.
-^1610929267658
 TLP::Task-level, Task of work can operate independently and largely in parallel.
-^1610929267664
 
 # Hardware Parallelism
 Instruction-level Parallelism:Exploits DLP with compiler help using ideas of pipelining and at medium level using speculative execution[^1].
@@ -35,27 +30,19 @@ Request-level Parallelism:Exploits parallelism among largely decoupled tasks spe
 # Hardware Implementations
 
 SISD::single instruction stream, single data stream, Uniprocessor, standard sequential computer, but can still use instruction-level parallelism.
-^1610929267717
 SIMD::Same instruction executed by multiple processors using different data stream. DLP
-^1610929267726
 MISD::No commercial multi processor has been built
-^1610929267732
 MIMD::TLM. More flexible than SIMD, more generally applicable, but more expansive. MIMD can also exploit DLP, but overhead is generally higher than SIMD.
-^1610929267740
 
 # ISA Instruction-level Architecture
 #card
 programmer visible instruction set. Boundary between software and hardware.
-^1610929267754
 
 ## Class
 Nearly all ISAs today are general-purpose register architecture, where operands are either registers or memory locations. All recent ISAs are load-store ISA.
 register-memory::80x86
-^1610929267761
 load-store::ARM, MIPS, can only access memory with load, store
-^1610929267769
 Memory-memory, not existing today
-^1610929267777
 
 ## Instruction Size
 computers with fewer alternatives simplify the compiler’s task since there are fewer decisions for the compiler to make
@@ -66,25 +53,19 @@ The number of registers also affects the instruction size since you need log2 (n
 ## Memory Addressing
 #card
 Virtually all servers and desktops use byte addressing to access memory operands. Some required objects must be aligned. An access to an object of size s byte at byte address A is aligned if A mod s = 0. Access are generally faster if aligned.
-^1610929267786
 
 ## Addressing modes
 #card
 Addressing modes specify the address of a memory object, e.g. register, immediate (constants) and displacement.
-^1610929267795
 
 ## Types and size of operands
 #card
 8/16/32/64 bit. 80x86 also support 80-bit extended double precision.
-^1610929267804
 
 ### Operations
 Categories::data transfer; arithmetic logical, control, floating point.
-^1610929267829
 flow instructions::conditional branches, unconditional jumps, procedure calls and returns. PC-relative addressing.
-^1610929267811
 ISA encoding::Fixed length, variable length. All ARM, MIPS are 32 bits long. 80x86 is variable length. Program compiled for 80x86 is usually smaller than compiled for MIPS.
-^1610929267821
 
 # Microarchitecture, organization
 high-level aspects of computer design, e.g. memory system, memory interconnect and design of internal processor. (different implementation of same ISA)
@@ -94,21 +75,14 @@ refers to the specifics of a computer, including the detailed logic design and p
 
 # Tech trends
 Integrated circuit logic::Transistor density increases by about 35% per year. Increases in die size 10%-20% per year. A growth rate in transistor count on a chip 40%-55% per year.
-^1610929267836
 Semiconductor DRAM::(dynamic random-access memory): Capacity per DRAM chip has increased by 25% to 40% per year. Foundation of main memory.
-^1610929267844
 Semiconductor Flash::(electrically erasable programmable read-only memory): Nonvolatile semiconductor memory, standard storage device in PMDs. Capacity per chip increased by 50% to 60% per year. 15 to 20 times cheaper per bit than DRAM. SSD?
-^1610929267852
 Magnetic disk::15-25x cheaper per bit than Flash.
-^1610929267862
 Network::depends on performance of switches and transmission system.
-^1610929267872
 Performance Trends::Bandwidth over Latency: Performance is the primary differentiator for microprocessors and networks. Rule of thumb, bandwidth grows by at least the square of improvement in latency.
-^1610929267880
 
 # Scaling of Transistor performance and wires
 Feature Size::Integrated circuit processes are characterized by feature size, which is minimum size of a transistor or a wire in either x or y dimension.
-^1610929267890
 
 Density of transistors increases quadratically with a linear decrease in feature size. To a first approximation, transistor performance improves linearly with decreasing feature size.
 
@@ -136,30 +110,22 @@ Power is now the major constraint.
 #card
 a measure of the continuous service accomplishment (or, equivalently, of the time to failure) from a reference initial instant.  
 The primary way to cope with failure is redundancy, either in time (repeat the operation to see if it still is erroneous) or in resources (have other components to take over from the one that failed)
-^1610929267913
 
 
 the mean time to failure (MTTF)::is a reliability measure
-^1610929267924
 FIT (for failures in time)::The reciprocal of MTTF is a rate of failures, generally reported as failures per billion hours of operation
-^1610929267931
 Service interruption::measured as mean time to repair (MTTR)
-^1610929267941
 Mean time between failures (MTBF)::is simply the sum of MTTF + MTTR
-^1610929267949
 Module availability::is a measure of the service accomplishment with respect to the alternation between the two states of accomplishment and interruption. Availability::MTTF / MTBF
-^1610929267959
 
 
 # Wall-clock time
 #card
 response time, elapsed time, latency to complete a task
-^1610929267967
 
 # CPU time
 #card
 the time the processor is computing, not including the time waiting for I/O or running other program
-^1610929267976
 
 # Benchmark
 The best choice of benchmarks to measure performance is real applications
@@ -174,62 +140,48 @@ benchmark suites:collections of benchmark applications are a popular measure of 
 # SPEC
 #card
 Standard Performance Evaluation Corporation, One of the most successful attempts to create standardized benchmark application suites
-^1610929268047
 
 SPEC benchmarks are real programs modified to be portable and to minimize the effect of I/O on performance.
 
 ## The integer benchmarks
 #card
 vary from part of a C compiler to a chess program to a quantum computer simulation.
-^1610929268058
 
 ## The floatingpoint benchmarks
 #card
 include structured grid codes for finite element modeling, particle method codes for molecular dynamics, and sparse linear algebra codes for fluid dynamics.
-^1610929268067
 
 ## SPECrate
 #card
 a measure of request-level parallelism, a simple throughput benchmark where the processing rate of a multiprocessor can be measured by running multiple copies (usually as many as there are processors) of each SPEC CPU benchmark and converting the CPU time into a rate.
-^1610929268076
 
 ## SPECSFS
 #card
 a file server benchmark. a benchmark for measuring NFS (Network File System) performance using a script of file server requests; it tests the performance of the I/O system (both disk and network I/O) as well as the processor. is a throughput-oriented benchmark but with important response time requirements.
-^1610929268088
 
 ## SPECWeb
 #card
 Web server benchmark.  simulates multiple clients requesting both static and dynamic pages from a server, as well as clients posting data to the server
-^1610929268096
 
 ## SPECjbb
 #card
 measures server performance for Web applications written in Java.
-^1610929268107
 
 ## SPECvirt_sc2010
 #card
 evaluates end-to-end performance of virtualized datacenter servers, including hardware, the virtual machine layer, and the virtualized guest operating system.
-^1610929268114
 
 # Transaction-processing (TP) benchmarks
 #card
 measure the ability of a system to handle transactions that consist of database accesses and updates.
-^1610929268124
 
 ## Transaction Processing Council (TPC)
 #card
 to try to create realistic and fair benchmarks for TP
 TPC-C::simulates a complex query environment. All the TPC benchmarks measure performance in transactions per second. In addition, they include a response time requirement, so that throughput performance is measured only when the response time limit is met.
-^1610929268134
 TPC-H::models ad hoc decision support—the queries are unrelated and knowledge of past queries cannot be used to optimize future queries.
-^1610929268142
 TPC-E::is a new On-Line Transaction Processing (OLTP) workload that simulates a brokerage firm’s customer accounts.
-^1610929268150
 TPC Energy::which adds energy metrics to all the existing TPC benchmarks.
-^1610929268159
-^1610929268167
 
 
 The guiding principle of reporting performance measurements should be **reproducibility**—list everything another experimenter would need to duplicate the results.
@@ -242,31 +194,20 @@ The guiding principle of reporting performance measurements should be **reproduc
 
 # Principles of Computer Design
 Take Advantage of Parallelism::is one of the most important methods for improving performance.
-^1610929268175
 Principle of Locality::Programs tend to reuse data and instructions they have used recently. A widely held rule of thumb is that a program spends 90% of its execution time in only 10% of the code.
-^1610929268183
 Temporal locality::states that recently accessed items are likely to be accessed in the near future.
-^1610929268191
 Spatial locality::says that items whose addresses are near one another tend to be referenced close together in time.
-^1610929268199
 Focus on the Common Case::In making a design trade-off, favor the frequent case over the infrequent case.  the frequent case is often simpler and can be done faster than the infrequent case.
-^1610929268209
 
 # The Processor Performance Equation
 Essentially all computers are constructed using a clock running at a constant rate.
 Processor performance is dependent upon three characteristics: clock cycle (or rate), clock cycles per instruction, and instruction count
 Ticks, cycles::these discrete time events. Computer designers refer to the time of a clock period by its duration (e.g., 1 ns) or by its rate (e.g., 1 GHz).
-^1610929268237
 CPU time::CPU time = CPU clock cycles for a program * Clock cycle time = CPU clock cycles for a program / Clock Rate
-^1610929268244
 IC::instruction path length or instruction count (IC)
-^1610929268254
 CPI::clock cycles per instruction (CPI)
-^1610929268260
 IPC::instructions per clock (IPC)
-^1610929268270
 CPI::CPU clock cycles for a program / Instruction count
-^1610929268277
 
 
 ## Pitfalls
@@ -296,20 +237,16 @@ Appendix A - P.523
 # Desktop computing
 #card
 performance of programs with int and fp data types, with little regard for program size.
-^1610929268288
 
 # Server computing
 #card
 primarily for databases, file server, web applications and some time-sharing applications for many users. Fp performance is far less important than int.
-^1610929268296
 
 # Personal mobile devices and embedded applications
 #card
 value cost and energy. Code size is important due to less memory and energy. Some classes of instructions (e.g. fp) may be optional to reduce chip costs.
-^1610929268307
 
 
 # Speculative execution
 #card
 an optimization technique where a computer system performs some task that may not be needed. Work is done before it is known whether it is actually needed, so as to prevent a delay that would have to be incurred by doing the work after it is known that it is needed.
-^1610929268318
